@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.twu.biblioteca.beans.Book;
 import com.twu.biblioteca.beans.User;
+import com.twu.biblioteca.beans.Movie;
 
 public class BibliotecaApp {
 
@@ -36,7 +37,7 @@ public class BibliotecaApp {
         System.out.println("2. Book Details.");
         System.out.println("3. Checkout Book.");
         System.out.println("4. Return Book.");
-        System.out.println();
+        System.out.println("5. Movies List.");
         System.out.println("0. Quit.");
         System.out.println("---------------");
         System.out.print("Please input your choise: ");
@@ -112,6 +113,15 @@ public class BibliotecaApp {
         }
     }
 
+    private static void listMovies() {
+        ArrayList<Movie> movies = Movie.list();
+        System.out.println();
+        System.out.println("Name :: Year :: Director :: Rating");
+        for (Movie movie:movies
+                ) {
+            System.out.println(movie.getName() + " :: " + movie.getYear() + " :: " + movie.getDirector() + " :: " + movie.getRating());
+        }
+    }
 
     private static void option(int opt) {
         switch (opt) {
@@ -128,6 +138,9 @@ public class BibliotecaApp {
             case 4:
                 if(login())
                     returnBook();
+                break;
+            case 5:
+                listMovies();
                 break;
             case 0:
                 System.out.println("Quit!");
