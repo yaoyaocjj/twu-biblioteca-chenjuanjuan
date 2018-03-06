@@ -89,4 +89,33 @@ public class MovieFileUtil {
         }
         return movies;
     }
+
+    public boolean checkoutMovie(Movie movie) {
+        return changeStatus(movie, CheckStatus.CHECKOUT);
+    }
+
+    public boolean returnMovie(Movie movie) {
+        return changeStatus(movie, CheckStatus.UNCHECKOUT);
+    }
+
+    private boolean changeStatus(Movie movie, CheckStatus status) {
+
+        if(!queryAll(Constant.MOVIES_FILE))
+            return false;
+
+        for (Movie b: allMovie) {
+            if(b.getName().equals(movie.getName()))
+                movie = b;
+        }
+
+        if(!movie.getStatus().equals(status)) {
+            allMovie.remove(movie);
+            movie.setStatus(status);
+            allMovie.add(movie);
+            if(write(Constant.MOVIES_FILE))
+                return true;
+        }
+
+        return false;
+    }
 }

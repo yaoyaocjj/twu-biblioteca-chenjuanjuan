@@ -32,14 +32,20 @@ public class BibliotecaApp {
 
     private static int mainMenu() {
         clearScreen();
-        System.out.println("---------------");
+        System.out.println("-----Book Option-----");
         System.out.println("1. Books List.");
         System.out.println("2. Book Details.");
         System.out.println("3. Checkout Book.");
         System.out.println("4. Return Book.");
+        System.out.println();
+        System.out.println("-----Movie Option-----");
         System.out.println("5. Movies List.");
+        System.out.println("6. Movie Details.");
+        System.out.println("7. Checkout Movie.");
+        System.out.println("8. Return Movie.");
+        System.out.println();
+        System.out.println("-----Quit-----");
         System.out.println("0. Quit.");
-        System.out.println("---------------");
         System.out.print("Please input your choise: ");
 
         int opt = in.nextInt();
@@ -123,6 +129,44 @@ public class BibliotecaApp {
         }
     }
 
+    private static void queryMovie() {
+        System.out.print("Please input the name of movie: ");
+        Movie movie = Movie.query(in.nextLine());
+        if(movie == null)
+            System.out.println("The movie doesn't exist.");
+        else
+            System.out.println(movie.getName() + " :: " + movie.getYear() + " :: " + movie.getDirector() + " :: " + movie.getRating());
+    }
+
+
+
+    private static void checkoutMovie() {
+        System.out.print("Please input the name of movie: ");
+        Movie movie = Movie.query(in.nextLine());
+        if(movie == null)
+            System.out.println("The movie doesn't exist.");
+        else {
+            if (movie.checkoutMovie())
+                System.out.println("Thank you! Enjoy the movie!");
+            else
+                System.out.println("That movie is not available.");
+        }
+    }
+
+    private static void returnMovie() {
+        System.out.print("Please input the name of movie: ");
+        Movie movie = Movie.query(in.nextLine());
+        if(movie == null)
+            System.out.println("The movie doesn't exist.");
+        else {
+            if (movie.returnMovie())
+                System.out.println("Thank you for returning the movie.");
+            else
+                System.out.println("That is not a valid movie to return.");
+        }
+    }
+
+
     private static void option(int opt) {
         switch (opt) {
             case 1:
@@ -141,6 +185,17 @@ public class BibliotecaApp {
                 break;
             case 5:
                 listMovies();
+                break;
+            case 6:
+                queryMovie();
+                break;
+            case 7:
+                if(login())
+                    checkoutMovie();
+                break;
+            case 8:
+                if(login())
+                    returnMovie();
                 break;
             case 0:
                 System.out.println("Quit!");

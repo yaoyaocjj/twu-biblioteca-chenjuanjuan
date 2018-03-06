@@ -14,6 +14,21 @@ public class Movie {
     private int rating = 0;
     private CheckStatus status;
 
+    public Movie(String name, int year, String director, int rating) {
+        this.name = name;
+        this.year = year;
+        this.director = director;
+        this.rating = rating;
+    }
+
+    public Movie(String name, int year, String director, int rating, CheckStatus status) {
+        this.name = name;
+        this.year = year;
+        this.director = director;
+        this.rating = rating;
+        this.status = status;
+    }
+
     public String getName() {
         return name;
     }
@@ -59,18 +74,18 @@ public class Movie {
         return movie.list();
     }
 
-    public Movie(String name, int year, String director, int rating) {
-        this.name = name;
-        this.year = year;
-        this.director = director;
-        this.rating = rating;
+    public static Movie query(String name) {
+        MovieFileUtil movie = new MovieFileUtil();
+        return movie.query(name);
     }
 
-    public Movie(String name, int year, String director, int rating, CheckStatus status) {
-        this.name = name;
-        this.year = year;
-        this.director = director;
-        this.rating = rating;
-        this.status = status;
+    public boolean checkoutMovie() {
+        MovieFileUtil movie = new MovieFileUtil();
+        return movie.checkoutMovie(this);
+    }
+
+    public boolean returnMovie() {
+        MovieFileUtil movie = new MovieFileUtil();
+        return movie.returnMovie(this);
     }
 }
