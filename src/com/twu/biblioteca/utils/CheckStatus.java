@@ -1,6 +1,9 @@
 package com.twu.biblioteca.utils;
 
-public enum  BookStatus {
+/**
+ * Created by joshua on 17-7-31.
+ */
+public enum CheckStatus {
     UNCHECKOUT, CHECKOUT, NONE;
 
     public String toString() {
@@ -9,9 +12,9 @@ public enum  BookStatus {
         return this.name().toLowerCase();
     }
 
-    public static BookStatus toStatus(String status) {
+    public static CheckStatus toStatus(String status) {
         if("".equals(status))
             return NONE;
-        return BookStatus.valueOf(status.toUpperCase());
+        return CheckStatus.valueOf(status.toUpperCase());
     }
 }

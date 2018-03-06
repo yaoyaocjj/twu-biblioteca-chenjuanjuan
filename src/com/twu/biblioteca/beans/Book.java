@@ -1,14 +1,14 @@
 package com.twu.biblioteca.beans;
 
 import java.util.ArrayList;
-import com.twu.biblioteca.utils.BookStatus;
+import com.twu.biblioteca.utils.CheckStatus;
 import com.twu.biblioteca.utils.BookFileUtil;
 
 public class Book {
     private String name;
     private String author;
     private String date;
-    private BookStatus status;
+    private CheckStatus status;
 
     public String getName() {
         return name;
@@ -34,11 +34,11 @@ public class Book {
         this.date = date;
     }
 
-    public BookStatus getStatus() {
+    public CheckStatus getStatus() {
         return status;
     }
 
-    public void setStatus(BookStatus status) {
+    public void setStatus(CheckStatus status) {
         this.status = status;
     }
 
@@ -52,7 +52,7 @@ public class Book {
         this.date = date;
     }
 
-    public Book(String name, String author, String date, BookStatus status) {
+    public Book(String name, String author, String date, CheckStatus status) {
         this.name = name;
         this.author = author;
         this.date = date;

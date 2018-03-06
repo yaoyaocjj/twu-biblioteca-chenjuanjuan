@@ -62,7 +62,7 @@ public class BookFileUtil {
         if(strs.length != 4)
             return null;
 
-        return new Book(strs[0], strs[1], strs[2], BookStatus.toStatus(strs[3]));
+        return new Book(strs[0], strs[1], strs[2], CheckStatus.toStatus(strs[3]));
     }
 
 
@@ -78,7 +78,7 @@ public class BookFileUtil {
         return null;
     }
 
-    private boolean changeStatus(Book book, BookStatus status) {
+    private boolean changeStatus(Book book, CheckStatus status) {
 
         if(!queryAll(Constant.BOOKS_FILE))
             return false;
@@ -100,11 +100,11 @@ public class BookFileUtil {
     }
 
     public boolean checkoutBook(Book book) {
-        return changeStatus(book, BookStatus.CHECKOUT);
+        return changeStatus(book, CheckStatus.CHECKOUT);
     }
 
     public boolean returnBook(Book book) {
-        return changeStatus(book, BookStatus.UNCHECKOUT);
+        return changeStatus(book, CheckStatus.UNCHECKOUT);
     }
 
     public ArrayList<Book> list() {
@@ -115,7 +115,7 @@ public class BookFileUtil {
         ArrayList<Book> books = new ArrayList<Book>();
 
         for (Book b: allBook) {
-            if(b.getStatus().equals(BookStatus.UNCHECKOUT))
+            if(b.getStatus().equals(CheckStatus.UNCHECKOUT))
                 books.add(b);
         }
         return books;
