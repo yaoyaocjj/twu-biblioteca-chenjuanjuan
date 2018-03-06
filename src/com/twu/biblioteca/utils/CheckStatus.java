@@ -1,8 +1,5 @@
 package com.twu.biblioteca.utils;
 
-/**
- * Created by joshua on 17-7-31.
- */
 public enum CheckStatus {
     UNCHECKOUT, CHECKOUT, NONE;
 

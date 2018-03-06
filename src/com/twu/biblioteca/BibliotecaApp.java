@@ -44,6 +44,9 @@ public class BibliotecaApp {
         System.out.println("7. Checkout Movie.");
         System.out.println("8. Return Movie.");
         System.out.println();
+        System.out.println("-----user info-----");
+        System.out.println("9. Personal Information.");
+        System.out.println();
         System.out.println("-----Quit-----");
         System.out.println("0. Quit.");
         System.out.print("Please input your choise: ");
@@ -156,7 +159,7 @@ public class BibliotecaApp {
     private static void returnMovie() {
         System.out.print("Please input the name of movie: ");
         Movie movie = Movie.query(in.nextLine());
-        if(movie == null)
+        if (movie == null)
             System.out.println("The movie doesn't exist.");
         else {
             if (movie.returnMovie())
@@ -164,6 +167,12 @@ public class BibliotecaApp {
             else
                 System.out.println("That is not a valid movie to return.");
         }
+    }
+
+
+    private static void showInfo() {
+        System.out.println("Name :: Role :: Email :: Tel");
+        System.out.println(user.toString());
     }
 
 
@@ -196,6 +205,10 @@ public class BibliotecaApp {
             case 8:
                 if(login())
                     returnMovie();
+                break;
+            case 9:
+                if(login())
+                    showInfo();
                 break;
             case 0:
                 System.out.println("Quit!");
