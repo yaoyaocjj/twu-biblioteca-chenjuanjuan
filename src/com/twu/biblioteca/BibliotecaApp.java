@@ -13,9 +13,7 @@ public class BibliotecaApp {
     private static User user = null;
 
     private static User inputUser() {
-
         String username = "", password = "";
-
         System.out.print("Please input your username: ");
         username = in.nextLine();
         System.out.print("Please input your password: ");
@@ -25,13 +23,13 @@ public class BibliotecaApp {
     }
 
     private static void getWelcomeInfo() {
-
+        System.out.println("***********************");
         System.out.println("Welcome to Biblioteca!");
+        System.out.println("***********************");
         System.out.println();
     }
 
     private static int mainMenu() {
-        clearScreen();
         System.out.println("-----Book Option-----");
         System.out.println("1. Books List.");
         System.out.println("2. Book Details.");
@@ -49,16 +47,11 @@ public class BibliotecaApp {
         System.out.println();
         System.out.println("-----Quit-----");
         System.out.println("0. Quit.");
-        System.out.print("Please input your choise: ");
+        System.out.print("Please input your option: ");
 
         int opt = in.nextInt();
         in.nextLine();
         return opt;
-    }
-
-    private static void clearScreen() {
-        for(int i = 0; i < 2; i++)
-            System.out.println();
     }
 
     private static boolean login() {
@@ -79,10 +72,9 @@ public class BibliotecaApp {
     private static void listBooks() {
         ArrayList<Book> books = Book.list();
         System.out.println();
-        System.out.println("Name :: Author :: Date");
-        for (Book book:books
-                ) {
-            System.out.println(book.getName() + " :: " + book.getAuthor() + " :: " + book.getDate());
+        System.out.println("The Books list:");
+        for (Book book : books) {
+            System.out.println(book.getName());
         }
         System.out.println();
     }
@@ -90,7 +82,7 @@ public class BibliotecaApp {
     private static void queryBook() {
         System.out.print("Please input the name of book: ");
         Book book = Book.query(in.nextLine());
-        if(book == null)
+        if (book == null)
             System.out.println("The book doesn't exist.");
         else
             System.out.println(book.getName() + " :: " + book.getAuthor() + " :: " + book.getDate());
@@ -99,7 +91,7 @@ public class BibliotecaApp {
     private static void checkoutBook() {
         System.out.print("Please input the name of book: ");
         Book book = Book.query(in.nextLine());
-        if(book == null)
+        if (book == null)
             System.out.println("The book doesn't exist.");
         else {
             if (book.checkout())
@@ -112,7 +104,7 @@ public class BibliotecaApp {
     private static void returnBook() {
         System.out.print("Please input the name of book: ");
         Book book = Book.query(in.nextLine());
-        if(book == null)
+        if (book == null)
             System.out.println("The book doesn't exist.");
         else {
             if (book.giveBack())
@@ -125,28 +117,27 @@ public class BibliotecaApp {
     private static void listMovies() {
         ArrayList<Movie> movies = Movie.list();
         System.out.println();
-        System.out.println("Name :: Year :: Director :: Rating");
-        for (Movie movie:movies
+        System.out.println("The Movies list: ");
+        for (Movie movie : movies
                 ) {
-            System.out.println(movie.getName() + " :: " + movie.getYear() + " :: " + movie.getDirector() + " :: " + movie.getRating());
+            System.out.println(movie.getName());
         }
     }
 
     private static void queryMovie() {
         System.out.print("Please input the name of movie: ");
         Movie movie = Movie.query(in.nextLine());
-        if(movie == null)
+        if (movie == null)
             System.out.println("The movie doesn't exist.");
         else
             System.out.println(movie.getName() + " :: " + movie.getYear() + " :: " + movie.getDirector() + " :: " + movie.getRating());
     }
 
 
-
     private static void checkoutMovie() {
         System.out.print("Please input the name of movie: ");
         Movie movie = Movie.query(in.nextLine());
-        if(movie == null)
+        if (movie == null)
             System.out.println("The movie doesn't exist.");
         else {
             if (movie.checkoutMovie())
@@ -185,11 +176,11 @@ public class BibliotecaApp {
                 queryBook();
                 break;
             case 3:
-                if(login())
+                if (login())
                     checkoutBook();
                 break;
             case 4:
-                if(login())
+                if (login())
                     returnBook();
                 break;
             case 5:
@@ -199,15 +190,15 @@ public class BibliotecaApp {
                 queryMovie();
                 break;
             case 7:
-                if(login())
+                if (login())
                     checkoutMovie();
                 break;
             case 8:
-                if(login())
+                if (login())
                     returnMovie();
                 break;
             case 9:
-                if(login())
+                if (login())
                     showInfo();
                 break;
             case 0:
@@ -222,7 +213,7 @@ public class BibliotecaApp {
         getWelcomeInfo();
 
         int opt = -1;
-        while(opt != 0) {
+        while (opt != 0) {
             opt = mainMenu();
             option(opt);
         }

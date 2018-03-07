@@ -1,6 +1,7 @@
 package com.twu.biblioteca.beans;
 
 import java.util.ArrayList;
+
 import com.twu.biblioteca.utils.CheckStatus;
 import com.twu.biblioteca.utils.BookFileUtil;
 
@@ -44,12 +45,6 @@ public class Book {
 
     public Book(String name) {
         this.name = name;
-    }
-
-    public Book(String name, String author, String date) {
-        this.name = name;
-        this.author = author;
-        this.date = date;
     }
 
     public Book(String name, String author, String date, CheckStatus status) {

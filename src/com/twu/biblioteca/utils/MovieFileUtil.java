@@ -100,19 +100,19 @@ public class MovieFileUtil {
 
     private boolean changeStatus(Movie movie, CheckStatus status) {
 
-        if(!queryAll(Constant.MOVIES_FILE))
+        if (!queryAll(Constant.MOVIES_FILE))
             return false;
 
-        for (Movie b: allMovie) {
-            if(b.getName().equals(movie.getName()))
+        for (Movie b : allMovie) {
+            if (b.getName().equals(movie.getName()))
                 movie = b;
         }
 
-        if(!movie.getStatus().equals(status)) {
+        if (!movie.getStatus().equals(status)) {
             allMovie.remove(movie);
             movie.setStatus(status);
             allMovie.add(movie);
-            if(write(Constant.MOVIES_FILE))
+            if (write(Constant.MOVIES_FILE))
                 return true;
         }
 

@@ -75,7 +75,7 @@ public class User {
         UserFileUtil user = new UserFileUtil();
         Role role = user.getUser(this);
         this.role = role;
-        if(role != Role.NONE)
+        if (role != Role.NONE)
             return true;
         return false;
     }

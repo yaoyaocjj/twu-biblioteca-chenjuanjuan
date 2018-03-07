@@ -15,8 +15,7 @@ public class BookFileUtil {
 
         try {
             bw = new BufferedWriter(new FileWriter(filename));
-            for (Book book: allBook) {
-
+            for (Book book : allBook) {
                 bw.write(book.getName() + " :: " + book.getAuthor() + " :: " + book.getDate() + " :: " + book.getStatus().toString());
                 bw.newLine();
             }
@@ -24,8 +23,7 @@ public class BookFileUtil {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             try {
                 bw.close();
             } catch (IOException e) {
@@ -42,7 +40,7 @@ public class BookFileUtil {
 
         try {
             br = new BufferedReader(new FileReader(filename));
-            while((line = br.readLine()) != null)
+            while ((line = br.readLine()) != null)
                 allBook.add(stringToBook(line));
             return true;
         } catch (IOException e) {
@@ -59,7 +57,7 @@ public class BookFileUtil {
 
     private Book stringToBook(String content) {
         String[] strs = content.split(" :: ");
-        if(strs.length != 4)
+        if (strs.length != 4)
             return null;
 
         return new Book(strs[0], strs[1], strs[2], CheckStatus.toStatus(strs[3]));
@@ -67,12 +65,12 @@ public class BookFileUtil {
 
 
     public Book query(String name) {
-        if(!queryAll(Constant.BOOKS_FILE))
+        if (!queryAll(Constant.BOOKS_FILE))
             return null;
 
-        for (Book b: allBook
+        for (Book b : allBook
                 ) {
-            if(b.getName().equals(name))
+            if (b.getName().equals(name))
                 return b;
         }
         return null;
@@ -80,19 +78,19 @@ public class BookFileUtil {
 
     private boolean changeStatus(Book book, CheckStatus status) {
 
-        if(!queryAll(Constant.BOOKS_FILE))
+        if (!queryAll(Constant.BOOKS_FILE))
             return false;
 
-        for (Book b: allBook) {
-            if(b.getName().equals(book.getName()))
+        for (Book b : allBook) {
+            if (b.getName().equals(book.getName()))
                 book = b;
         }
 
-        if(!book.getStatus().equals(status)) {
+        if (!book.getStatus().equals(status)) {
             allBook.remove(book);
             book.setStatus(status);
             allBook.add(book);
-            if(write(Constant.BOOKS_FILE))
+            if (write(Constant.BOOKS_FILE))
                 return true;
         }
 
@@ -109,13 +107,13 @@ public class BookFileUtil {
 
     public ArrayList<Book> list() {
 
-        if(!queryAll(Constant.BOOKS_FILE))
+        if (!queryAll(Constant.BOOKS_FILE))
             return null;
 
         ArrayList<Book> books = new ArrayList<Book>();
 
-        for (Book b: allBook) {
-            if(b.getStatus().equals(CheckStatus.UNCHECKOUT))
+        for (Book b : allBook) {
+            if (b.getStatus().equals(CheckStatus.UNCHECKOUT))
                 books.add(b);
         }
         return books;
